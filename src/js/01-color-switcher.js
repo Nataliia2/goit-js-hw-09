@@ -8,7 +8,7 @@ const bodyColor = document.querySelector('body');
 startButton.addEventListener('click', onStartButton);
 stopButton.addEventListener('click', onStopButton);
 
-
+stopButton.disabled = true;
 
 const changeBackgroundColor = () => bodyColor.style.backgroundColor = getRandomHexColor();
 

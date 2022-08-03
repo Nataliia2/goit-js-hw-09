@@ -20,7 +20,7 @@ const options = {
 
 flatpickr(data, options);
 
-let timer = 0;
+let selectedTime = 0;
 let intervalId = null;
 
 function onClose(selectedDates) {
@@ -29,9 +29,9 @@ function onClose(selectedDates) {
                 {
                     timeout: 2000,
                 });
-        } else if (selectedDates[0] > options.defaultDate) {
+        } else  {
             startButton.disabled = false;
-            timer = selectedDates[0];
+            selectedTime = selectedDates[0];
         };
 };
 function timeInterval(date) {
@@ -41,15 +41,19 @@ function timeInterval(date) {
         const time = convertMs(countdownTime);
         updateBodyTime(time);
 
-        if (Math.floor(countdownTime / 1000) === 0) {
+        if (countdownTime <= 0)  {
+            data.disabled = false;
             clearInterval(intervalId);
+              
         }
     }, 1000); 
 };
 
 function onStartButton() {
     startButton.disabled = true;
-    timeInterval(timer); 
+    data.disabled = true;
+    timeInterval(selectedTime); 
+    
 };
 
 function addLeadingZero(value) {

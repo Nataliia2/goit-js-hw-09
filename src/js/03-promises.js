@@ -9,9 +9,10 @@ promiseForm.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(event) {
   event.preventDefault();
-  let delay = Number(inputfirstDelay.value);
+  const firstStep = Number(inputfirstDelay.value);
   const stepDelay = Number(inputStepDelay.value);
   const amount = Number(inputAmount.value);
+  let delay = firstStep;
 
 for (let position = 1; position <= amount; position += 1) {
 
@@ -30,10 +31,8 @@ function createPromise(position, delay) {
       
   
   if (shouldResolve) {
-    // Fulfill
     resolve({position, delay})
   } else {
-    // Reject
     reject({position, delay});
   }
 }, delay);
